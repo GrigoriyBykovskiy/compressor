@@ -2,32 +2,32 @@
 #define __HUFFMAN_H__
 
 typedef struct {
-	float payload;//probability
-	char symbol;
-	struct TNode* left_child;
-	struct TNode* right_child;
+    float payload;//probability
+    char symbol;
+    struct TNode* left_child;
+    struct TNode* right_child;
 } TNode;
+
+TNode* init_node(float payload, char symbol);
+void add_child(TNode* node, TNode* child);
+float get_node_payload(TNode *node);
+char get_node_symbol(TNode* node);
+bool is_node_leaf(TNode* node);
+
 typedef struct {
-	TNode* root;
+    TNode* root;
 } TBinaryTree;
 
 TBinaryTree* init_binary_tree(TNode* root);
-
-/*
 float get_tree_payload(TBinaryTree* tree);
-TNode get_tree_root(TBinaryTree* tree);
-*/
 
-TNode* init_node(float payload, char symbol);
+typedef struct {
+    TBinaryTree **data;
+    unsigned data_count;
+} TPriorityQueue;
 
-/*
-TNode* get_left_child(TNode* node);
-TNode* get_right_child(TNode* node);
-*/
-
-bool is_node_leaf(TNode* node);
-float get_node_payload(TNode *node);
-char get_node_symbol(TNode* node);
-void add_child(TNode* node, TNode* child);
+TPriorityQueue* init_queue();
+void add_queue_element();
+void remove_queue_element();
 
 #endif
