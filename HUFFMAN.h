@@ -1,11 +1,10 @@
-#ifndef __HUFFMAN_H__
-#define __HUFFMAN_H__
-
+#ifndef COMPRESSOR_TMP_HUFFMAN_H
+#define COMPRESSOR_TMP_HUFFMAN_H
 #include <stdbool.h>
 
 typedef struct {
-	char symbol;
-	unsigned payload;
+    char symbol;
+    unsigned payload;
 } TSymbol;
 
 TSymbol* init_tsymbol(void);
@@ -15,8 +14,8 @@ char get_tsymbol_symbol(TSymbol* tsymbol);
 unsigned get_tsymbol_payload(TSymbol* tsymbol);
 
 typedef struct {
-	TSymbol** array_of_tsymbols;
-	unsigned tsymbols_count;
+    TSymbol** array_of_tsymbols;
+    unsigned tsymbols_count;
 } TFile;
 
 TFile* init_tfile(void);
@@ -25,9 +24,9 @@ bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol);
 
 typedef struct {
     TSymbol* root;
-	char code[256];
-	struct TBinaryTree* left_tbinarytree;
-	struct TBinaryTree* right_tbinarytree;
+    char code[256];
+    struct TBinaryTree* left_tbinarytree;
+    struct TBinaryTree* right_tbinarytree;
 } TBinaryTree;
 
 TBinaryTree* init_tbinarytree(void);
@@ -45,6 +44,6 @@ TPriorityQueue* init_queue(void);
 void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree);
 
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count);
+void fillEncodingArray(TBinaryTree* tbinarytree);
 
-
-#endif
+#endif //COMPRESSOR_TMP_HUFFMAN_H
