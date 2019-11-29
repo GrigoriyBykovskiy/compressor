@@ -1,6 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include "HUFFMAN.h"
 
 TSymbol* init_tsymbol(void)
@@ -96,7 +99,7 @@ bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then incr
 	}
 	return 0;
 };
-
+/*
 TNode* init_tnode(void)
 {
 	TNode* n = NULL;
@@ -111,6 +114,7 @@ TNode* init_tnode(void)
 	}
 	else
 	{
+		printf("Out of memory!\n");
 		free(n);
 		n = NULL;
 	}
@@ -161,47 +165,88 @@ unsigned get_tnode_payload(TNode* tnode)
 
 TNode* get_tnode_left_child(TNode* tnode)
 {
-	return tnode->left_child;
+	TNode* tnode_tmp = init_tnode();
+	set_tnode_symbol(tnode_tmp, tnode->symbol);
+	set_tnode_payload(tnode_tmp, tnode->payload);
+	return tnode_tmp;
 };
 
 TNode* get_tnode_right_child(TNode* tnode)
 {
-	return tnode->right_child;
+	TNode* tnode_tmp = init_tnode();
+	set_tnode_symbol(tnode_tmp, tnode->symbol);
+	set_tnode_payload(tnode_tmp, tnode->payload);
+	return tnode_tmp;
 };
+
+void free_tnode(TNode* tnode)
+{
+	if (tnode->left_child != NULL)
+		free_tnode(tnode->left_child);
+
+	if (tnode->right_child != NULL)
+		free_tnode(tnode->right_child);
+
+	free(tnode);
+}
 
 bool is_tnode_leaf(TNode* tnode)
 {
 	return (tnode->left_child == NULL) && (tnode->right_child == NULL);
 };
-
-
-TBinaryTree* init_tree(void)
+*/
+TBinaryTree* init_tbinarytree(void)
 {
-    TBinaryTree* t = NULL;
-    t = (TBinaryTree*)malloc(sizeof(TBinaryTree));
+    TBinaryTree* t = (TBinaryTree*)malloc(sizeof(TBinaryTree));
 
     if (t != NULL)
     {
-        t->root = NULL;
+		t->root = NULL;
+		t->code[0] = 0;
+		t->left_tbinarytree = NULL;
+		t->right_tbinarytree = NULL;
     }
     else
     {
+		printf("Out of memory!\n");
         free(t);
         t = NULL;
     }
     return t;
 };
 
-void set_tbinarytree_tnode_root(TBinaryTree* tbinarytree, TNode* tnode)
-{
-	tbinarytree->root = tnode;
-};
-
 unsigned get_tbinarytree_payload(TBinaryTree* tbinarytree)
 {
 	unsigned tmp_payload;
-	tmp_payload = get_tnode_payload(tbinarytree->root);
+	tmp_payload = get_tsymbol_payload(tbinarytree->root);
 	return tmp_payload;
+};
+
+bool is_leaf(TBinaryTree* tbinarytree)
+{
+	return (tbinarytree->left_tbinarytree == NULL) && (tbinarytree->right_tbinarytree == NULL);
+};
+
+/*TBinaryTree* merge_tbinarytrees(TBinaryTree* tbinarytree_left, TBinaryTree* tbinarytree_right)
+{
+	TBinaryTree* new_tree = init_tbinarytree();
+
+	if (new_tree != NULL)
+	{
+		set_tnode_child(new_tree->root, tbinarytree_left->root);
+		set_tnode_child(new_tree->root, tbinarytree_right->root);
+		return new_tree;
+	}
+};*/
+
+int cmp_tbinarytrees(const void* a, const void* b)//fuck, it is dirty magic, i dont know how it work!
+{
+	TBinaryTree** tmp_pointer_t_a = a, ** tmp_pointer_t_b = b;
+	TBinaryTree* tmp_tree_a = *tmp_pointer_t_a, * tmp_tree_b = *tmp_pointer_t_b;
+	unsigned tmp_payload_a = tmp_tree_a->root->payload;
+	unsigned tmp_payload1_b = tmp_tree_b->root->payload;
+	int result = tmp_payload_a - tmp_payload1_b;
+	return (-1)*result;
 };
 
 TPriorityQueue* init_queue(void)
@@ -216,13 +261,14 @@ TPriorityQueue* init_queue(void)
     }
     else
     {
+		printf("Out of memory!\n");
         free(q);
         q = NULL;
     }
     return q;
 };
 
-void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree)
+void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree)// add in the end
 {
 	TBinaryTree** new_data;
 
@@ -233,24 +279,46 @@ void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree*
 		tpriorityqueue->data = new_data;
 		tpriorityqueue->data[tpriorityqueue->data_count] = tbinarytree;
 		tpriorityqueue->data_count += 1;
+		
 	}
 	else
 		printf("Out of memory!\n");
 };
 
-void remove_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree)
+TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
 {
-	for (int i = 0; i < tpriorityqueue->data_count; i++)
-	{
+	TBinaryTree* tmp_tree = init_tbinarytree();
+	TSymbol* tmp_root = init_tsymbol();
+	unsigned tmp_payload = get_tbinarytree_payload(tpriorityqueue->data[count - 2]) + get_tbinarytree_payload(tpriorityqueue->data[count - 1]);
+	set_tsymbol_payload(tmp_root, tmp_payload);
+	tmp_tree->root = tmp_root;
+	tmp_tree->left_tbinarytree = tpriorityqueue->data[count - 1];
+	tmp_tree->right_tbinarytree = tpriorityqueue->data[count - 2];
 
-		if (tmp_symbol == symbol)
-		{
-			unsigned tmp_payload = get_tsymbol_payload(tfile->array_of_tsymbols[i]);
-			tmp_payload++;
-			set_tsymbol_payload(tfile->array_of_tsymbols[i], tmp_payload);
-			return 1;
-		}
+	if (count == 2)
+		return tmp_tree;
+	else 
+	{
+		add_tpriorityqueue_tbinarytree(tpriorityqueue, tmp_tree);
+		qsort(tpriorityqueue->data, tpriorityqueue->data_count, sizeof(TBinaryTree*), cmp_tbinarytrees);
+		create_huffman_tree(tpriorityqueue, count - 1);
 	}
-	return 0;
 };
 
+void fillEncodingArray(TBinaryTree* tbinarytree) 
+{//заполнить кодировочную таблицу
+	if (tbinarytree->left_tbinarytree) {
+		if (is_leaf(tbinarytree)) printf("LEAF!\n");
+		TBinaryTree* tmp = tbinarytree->left_tbinarytree;
+		strcpy(tmp->code, tbinarytree->code);
+		strcat(tmp->code, "0");
+		fillEncodingArray(tbinarytree->left_tbinarytree);
+	}
+	if (tbinarytree->right_tbinarytree) {
+		if (is_leaf(tbinarytree)) printf("LEAF!\n");
+		TBinaryTree* tmp = tbinarytree->right_tbinarytree;
+		strcpy(tmp->code, tbinarytree->code);
+		strcat(tmp->code, "1");
+		fillEncodingArray(tbinarytree->right_tbinarytree);
+	}
+}
