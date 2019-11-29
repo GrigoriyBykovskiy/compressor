@@ -5,6 +5,7 @@
 typedef struct {
     char symbol;
     unsigned payload;
+    char code[256];
 } TSymbol;
 
 TSymbol* init_tsymbol(void);
@@ -30,9 +31,7 @@ typedef struct {
 } TBinaryTree;
 
 TBinaryTree* init_tbinarytree(void);
-//void set_tbinarytree_tnode_root(TBinaryTree* tbinarytree, TNode* tnode);
 unsigned get_tbinarytree_payload(TBinaryTree* tbinarytree);
-//TBinaryTree* merge_tbinarytrees(TBinaryTree* tbinarytree_1, TBinaryTree* tbinarytree_2);
 int cmp_tbinarytrees(const void* a, const void* b);
 
 typedef struct {
@@ -44,6 +43,6 @@ TPriorityQueue* init_queue(void);
 void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree);
 
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count);
-void fillEncodingArray(TBinaryTree* tbinarytree);
+void get_codes(TBinaryTree* tbinarytree);
 
 #endif //COMPRESSOR_TMP_HUFFMAN_H

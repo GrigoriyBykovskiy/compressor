@@ -15,6 +15,7 @@ TSymbol* init_tsymbol(void)
     {
         s->symbol = NULL;
         s->payload = 0;
+        s->code[0] = 0;
     }
     else
     {
@@ -99,102 +100,7 @@ bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then incr
     }
     return 0;
 };
-/*
-TNode* init_tnode(void)
-{
-	TNode* n = NULL;
-	n = (TNode*)malloc(sizeof(TNode));
 
-	if (n != NULL)
-	{
-		n->symbol = NULL;
-		n->payload = 0;
-		n->left_child = NULL;
-		n->right_child = NULL;
-	}
-	else
-	{
-		printf("Out of memory!\n");
-		free(n);
-		n = NULL;
-	}
-	return n;
-};
-
-void set_tnode_symbol(TNode* tnode, char symbol)
-{
-	tnode->symbol = symbol;
-};
-
-void set_tnode_payload(TNode* tnode, unsigned payload)
-{
-	tnode->payload = payload;
-};
-
-void set_tnode_child(TNode* tnode, TNode* tnode_child)
-{
-	if (tnode->left_child == NULL)
-		tnode->left_child = tnode_child;
-	else
-	{
-		unsigned tmp_tnode_payload = get_tnode_payload(tnode->left_child);
-		if (tmp_tnode_payload <= tnode_child->payload)
-			tnode->right_child = tnode_child;
-		else
-		{
-			tnode->right_child = tnode->left_child;
-			tnode->left_child = tnode_child;
-		}
-	}
-	tnode->payload += tnode_child->payload;
-};
-
-char get_tnode_symbol(TNode* tnode)
-{
-	char tmp;
-	tmp = tnode->symbol;
-	return tmp;
-};
-
-unsigned get_tnode_payload(TNode* tnode)
-{
-	unsigned tmp;
-	tmp = tnode->payload;
-	return tmp;
-};
-
-TNode* get_tnode_left_child(TNode* tnode)
-{
-	TNode* tnode_tmp = init_tnode();
-	set_tnode_symbol(tnode_tmp, tnode->symbol);
-	set_tnode_payload(tnode_tmp, tnode->payload);
-	return tnode_tmp;
-};
-
-TNode* get_tnode_right_child(TNode* tnode)
-{
-	TNode* tnode_tmp = init_tnode();
-	set_tnode_symbol(tnode_tmp, tnode->symbol);
-	set_tnode_payload(tnode_tmp, tnode->payload);
-	return tnode_tmp;
-};
-
-void free_tnode(TNode* tnode)
-{
-	if (tnode->left_child != NULL)
-		free_tnode(tnode->left_child);
-
-	if (tnode->right_child != NULL)
-		free_tnode(tnode->right_child);
-
-	free(tnode);
-}
-
-bool is_tnode_leaf(TNode* tnode)
-{
-	return (tnode->left_child == NULL) && (tnode->right_child == NULL);
-};
-*/
 TBinaryTree* init_tbinarytree(void)
 {
     TBinaryTree* t = (TBinaryTree*)malloc(sizeof(TBinaryTree));
@@ -305,20 +211,18 @@ TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
     }
 };
 
-void fillEncodingArray(TBinaryTree* tbinarytree)
+void get_codes(TBinaryTree* tbinarytree)
 {
     if (tbinarytree->left_tbinarytree) {
-        if (is_leaf(tbinarytree)) printf("LEAF!\n");
         TBinaryTree* tmp = tbinarytree->left_tbinarytree;
         strcpy(tmp->code, tbinarytree->code);
         strcat(tmp->code, "0");
-        fillEncodingArray(tbinarytree->left_tbinarytree);
+        get_codes(tbinarytree->left_tbinarytree);
     }
     if (tbinarytree->right_tbinarytree) {
-        if (is_leaf(tbinarytree)) printf("LEAF!\n");
         TBinaryTree* tmp = tbinarytree->right_tbinarytree;
         strcpy(tmp->code, tbinarytree->code);
         strcat(tmp->code, "1");
-        fillEncodingArray(tbinarytree->right_tbinarytree);
+        get_codes(tbinarytree->right_tbinarytree);
     }
 }
