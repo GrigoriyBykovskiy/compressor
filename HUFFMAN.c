@@ -49,6 +49,16 @@ unsigned get_tsymbol_payload(TSymbol* tsymbol)
     return tmp;
 };
 
+int cmp_tsymbols(const void* a, const void* b)//fuck, it is dirty magic, i dont know how it work!
+{
+    TSymbol** tmp_pointer_s_a = a, ** tmp_pointer_s_b = b;
+    TSymbol* tmp_tsymbol_a = *tmp_pointer_s_a, * tmp_tsymbol_b = *tmp_pointer_s_b;
+    unsigned tmp_payload_a = tmp_tsymbol_a->payload;
+    unsigned tmp_payload1_b = tmp_tsymbol_b->payload;
+    int result = tmp_payload_a - tmp_payload1_b;
+    return (-1)*result;
+};
+
 TFile* init_tfile(void)
 {
     TFile* f = NULL;

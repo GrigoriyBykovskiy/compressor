@@ -13,6 +13,7 @@ void set_tsymbol_symbol(TSymbol* tsymbol, char symbol);
 void set_tsymbol_payload(TSymbol* tsymbol, unsigned payload);
 char get_tsymbol_symbol(TSymbol* tsymbol);
 unsigned get_tsymbol_payload(TSymbol* tsymbol);
+int cmp_tsymbols(const void* a, const void* b);
 
 typedef struct {
     TSymbol** array_of_tsymbols;
