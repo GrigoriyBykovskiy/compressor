@@ -14,6 +14,7 @@ void set_tsymbol_payload(TSymbol* tsymbol, unsigned payload);
 char get_tsymbol_symbol(TSymbol* tsymbol);
 unsigned get_tsymbol_payload(TSymbol* tsymbol);
 int cmp_tsymbols(const void* a, const void* b);
+void print_tsymbol_data(TSymbol* tsymbol);
 
 typedef struct {
     TSymbol** array_of_tsymbols;
@@ -23,6 +24,7 @@ typedef struct {
 TFile* init_tfile(void);
 void add_tfile_tsymbol(TFile* tfile, TSymbol* tsymbol);
 bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol);
+void print_tfile_data(TFile* tfile);
 
 typedef struct {
     TSymbol* root;
@@ -34,6 +36,7 @@ typedef struct {
 TBinaryTree* init_tbinarytree(void);
 unsigned get_tbinarytree_payload(TBinaryTree* tbinarytree);
 int cmp_tbinarytrees(const void* a, const void* b);
+void print_tbinarytree_data(TBinaryTree* tbinarytree);
 
 typedef struct {
     TBinaryTree **data;
@@ -42,6 +45,7 @@ typedef struct {
 
 TPriorityQueue* init_queue(void);
 void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree* tbinarytree);
+void print_tpriorityqueue_data(TPriorityQueue* tpriorityqueue);
 
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count);
 void get_codes(TBinaryTree* tbinarytree);

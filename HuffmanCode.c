@@ -2,7 +2,7 @@
 //
 
 #define _CRT_SECURE_NO_WARNINGS
-#define FILENAME "/home/grigoriy/projects/compressor_tmp/8.tex"
+#define FILENAME "8.tex"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,6 +30,8 @@ int main()
 
         } while (symbol != EOF);
 
+        print_tfile_data(tfile);
+
         TPriorityQueue *queue = init_queue();
 
         for (int i = 0; i < tfile->tsymbols_count; i++) {
@@ -38,14 +40,19 @@ int main()
             add_tpriorityqueue_tbinarytree(queue, tmp_tree);
         }
 
+        print_tpriorityqueue_data(queue);
+
         qsort(queue->data, queue->data_count, sizeof(TBinaryTree *), cmp_tbinarytrees);
 
         TBinaryTree *tmp_tree = create_huffman_tree(queue, queue->data_count);
 
         get_codes(tmp_tree);
 
+        print_tpriorityqueue_data(queue);
+
         //copy codes from tree to symbol
-        for (int i = 0; i < queue->data_count; i++) {
+        for (int i = 0; i < queue->data_count; i++)
+        {
             if (queue->data[i]->root->symbol != 0) {
                 unsigned char tmp_symbol = queue->data[i]->root->symbol;
                 unsigned char tmp_payload = queue->data[i]->root->payload;
@@ -65,15 +72,6 @@ int main()
         //end add additional code of symbols
 
         qsort(tfile->array_of_tsymbols,tfile->tsymbols_count,sizeof(TSymbol*),cmp_tsymbols);
-
-        printf("\n====================Encoding table====================\n");
-        for (int i = 0; i < tfile->tsymbols_count; i++) {
-            unsigned char tmp = tfile->array_of_tsymbols[i]->symbol;
-            printf("\nCode of symbol is %3d;                 Payload is %3d;\n", tmp,
-                   tfile->array_of_tsymbols[i]->payload);
-            printf("\n%s\n", tfile->array_of_tsymbols[i]->code);
-        }
-        printf("\n======================================================\n");
 
         // create table of association
         for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
@@ -121,16 +119,6 @@ int main()
         }
         //end delete additional code of symbols
 
-        /*
-        printf("\n====================Encoding table====================\n");
-        for (int i = 0; i < tfile->tsymbols_count; i++) {
-            unsigned char tmp = tfile->array_of_tsymbols[i]->symbol;
-            printf("\nCode of symbol is %3d;                 Payload is %3d;\n", tmp,
-                   tfile->array_of_tsymbols[i]->payload);
-            printf("\n%s\n", tfile->array_of_tsymbols[i]->code);
-        }
-        printf("\n======================================================\n");
-        */
     }
     else
         fprintf(stderr, "Can not open input file!\n");

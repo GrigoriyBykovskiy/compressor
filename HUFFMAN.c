@@ -59,6 +59,12 @@ int cmp_tsymbols(const void* a, const void* b)//fuck, it is dirty magic, i dont 
     return (-1)*result;
 };
 
+void print_tsymbol_data(TSymbol* tsymbol)
+{
+    printf("\nCode of symbol is %3d;                 Payload is %3d;\n", tsymbol->symbol, tsymbol->payload);
+    printf("\n%s\n", tsymbol->code);
+};
+
 TFile* init_tfile(void)
 {
     TFile* f = NULL;
@@ -92,6 +98,14 @@ void add_tfile_tsymbol(TFile* tfile, TSymbol* tsymbol)
     }
     else
         printf("Out of memory!\n");
+};
+
+void print_tfile_data(TFile* tfile)
+{
+    printf("\n====================TFILE_____DATA====================\n");
+    for (int i = 0; i < tfile->tsymbols_count; i++)
+        print_tsymbol_data(tfile->array_of_tsymbols[i]);
+    printf("\n======================================================\n");
 };
 
 bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then increment payload
@@ -165,6 +179,13 @@ int cmp_tbinarytrees(const void* a, const void* b)//fuck, it is dirty magic, i d
     return (-1)*result;
 };
 
+void print_tbinarytree_data(TBinaryTree* tbinarytree)
+{
+    printf("\n====================TTREE____DATA====================\n");
+    print_tsymbol_data(tbinarytree->root);
+    printf("\n%s\n", tbinarytree->code);
+    printf("\n======================================================\n");
+};
 TPriorityQueue* init_queue(void)
 {
     TPriorityQueue* q = NULL;
@@ -201,6 +222,14 @@ void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree*
         printf("Out of memory!\n");
 };
 
+void print_tpriorityqueue_data(TPriorityQueue* tpriorityqueue)
+{
+    printf("\n====================TQUEUE____DATA====================\n");
+    for (int i = 0; i < tpriorityqueue->data_count; i++)
+        print_tbinarytree_data(tpriorityqueue->data[i]);
+    printf("\n======================================================\n");
+};
+
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
 {
     TBinaryTree* tmp_tree = init_tbinarytree();
@@ -223,16 +252,18 @@ TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
 
 void get_codes(TBinaryTree* tbinarytree)
 {
-    if (tbinarytree->left_tbinarytree) {
-        TBinaryTree* tmp = tbinarytree->left_tbinarytree;
-        strcpy(tmp->code, tbinarytree->code);
-        strcat(tmp->code, "0");
-        get_codes(tbinarytree->left_tbinarytree);
+    if (tbinarytree->left_tbinarytree)
+    {
+        TBinaryTree* tmp_l = tbinarytree->left_tbinarytree;
+        strcpy(tmp_l->code, tbinarytree->code);
+        strcat(tmp_l->code, "0");
+        get_codes(tmp_l);
     }
-    if (tbinarytree->right_tbinarytree) {
+    if (tbinarytree->right_tbinarytree)
+    {
         TBinaryTree* tmp = tbinarytree->right_tbinarytree;
         strcpy(tmp->code, tbinarytree->code);
         strcat(tmp->code, "1");
-        get_codes(tbinarytree->right_tbinarytree);
+        get_codes(tmp);
     }
 }
