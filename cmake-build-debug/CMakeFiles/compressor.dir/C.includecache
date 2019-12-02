@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/grigoriy/projects/compressor/HUFFMAN.h
+stdbool.h
+-
+
+/home/grigoriy/projects/compressor/HuffmanCode.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+HUFFMAN.h
+/home/grigoriy/projects/compressor/HUFFMAN.h
+

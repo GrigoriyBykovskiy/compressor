@@ -3,6 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #define FILENAME "8.tex"
+#define OUTPUTFILENAME "output.tex"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,7 +41,7 @@ int main()
             add_tpriorityqueue_tbinarytree(queue, tmp_tree);
         }
 
-        print_tpriorityqueue_data(queue);
+        //print_tpriorityqueue_data(queue);
 
         qsort(queue->data, queue->data_count, sizeof(TBinaryTree *), cmp_tbinarytrees);
 
@@ -48,7 +49,7 @@ int main()
 
         get_codes(tmp_tree);
 
-        print_tpriorityqueue_data(queue);
+        //print_tpriorityqueue_data(queue);
 
         //copy codes from tree to symbol
         for (int i = 0; i < queue->data_count; i++)
@@ -73,34 +74,41 @@ int main()
 
         qsort(tfile->array_of_tsymbols,tfile->tsymbols_count,sizeof(TSymbol*),cmp_tsymbols);
 
-        // create table of association
-        for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
+        FILE* output_text = NULL;
+        if (((output_text = fopen(OUTPUTFILENAME, "wb")) != NULL))
         {
-            TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
-            unsigned byte = strlen(tmp->code) / 8;
-            unsigned code_len = 0;
-
-            for (int k = 0; k < byte; k ++)
+            // create table of association
+            for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
             {
+                TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
+                unsigned byte = strlen(tmp->code) / 8;
+                unsigned code_len = 0;
 
-                unsigned char buf = 0;
+                fprintf(output_text,"%c%d", tmp->symbol, byte);
 
-                for (int i = 7; i >= 0; i--)
+                for (int k = 0; k < byte; k ++)
                 {
-                    if (tmp->code[code_len] == '1')
+
+                    unsigned char buf = 0;
+
+                    for (int i = 7; i >= 0; i--)
                     {
-                        buf |= (1 << i);
+                        if (tmp->code[code_len] == '1')
+                        {
+                            buf |= (1 << i);
+                        }
+                        if (tmp->code[code_len] == '0')
+                        {
+                            buf &= ~(1 << i);
+                        }
+                        code_len++;
                     }
-                    if (tmp->code[code_len] == '0')
-                    {
-                        buf &= ~(1 << i);
-                    }
-                    code_len++;
+                    //fprintf(output_text,"%c", buf);//replace write in file
                 }
-                printf("buf is %d\n", buf);//replace write in file
             }
+            // end create table of association
         }
-        // end create table of association
+
 
         // delete additional code of symbols
         for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
@@ -118,6 +126,40 @@ int main()
             }
         }
         //end delete additional code of symbols
+
+        // create output file
+        if (((input_text = fopen(FILENAME, "r")) != NULL) && (output_text = fopen(OUTPUTFILENAME, "wb")) != NULL) {
+            char symbol;
+            char *buf = malloc(1);
+            int buf_len = 0;
+            buf[0] = 0;
+
+            do {
+                int count = is_tfile_tsymbol_symbol_exist(tfile, symbol);
+                symbol = fgetc(input_text);
+
+                //printf("len of buf %d\n",strlen(buf));
+                if (count)
+                {
+                    printf("OK\n");
+                    TSymbol* tsymbol_buf = tfile->array_of_tsymbols[count];
+                    buf_len += strlen(tsymbol_buf->code);
+                    //printf("new len of buf %d\n",buf_len);
+                    buf = (char*) realloc (buf, (buf_len + 1) * sizeof(char));
+                    strcpy(buf,tsymbol_buf->code);
+                    printf("len of buf %d\n",strlen(buf));
+                    if ((buf_len % 8 == 0) && (buf != NULL))
+                    {
+                        printf("\n%s\n", buf);
+                        free(buf);
+                        buf_len = 0;
+                    }
+                }
+
+            } while (symbol != EOF);
+        }
+
+        // end create output file
 
     }
     else

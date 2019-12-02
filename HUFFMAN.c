@@ -108,7 +108,7 @@ void print_tfile_data(TFile* tfile)
     printf("\n======================================================\n");
 };
 
-bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then increment payload
+int is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then increment payload
 {
     for (int i = 0; i < tfile->tsymbols_count; i++)
     {
@@ -119,7 +119,7 @@ bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then incr
             unsigned tmp_payload = get_tsymbol_payload(tfile->array_of_tsymbols[i]);
             tmp_payload++;
             set_tsymbol_payload(tfile->array_of_tsymbols[i], tmp_payload);
-            return 1;
+            return i;
         }
     }
     return 0;
