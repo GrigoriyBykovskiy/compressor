@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/grigoriy/CLionProjects/compressor/HUFFMAN.c" "/home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles/compressor.dir/HUFFMAN.c.o"
-  "/home/grigoriy/CLionProjects/compressor/HuffmanCode.c" "/home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles/compressor.dir/HuffmanCode.c.o"
+  "/home/grigoriy/projects/compressor/HUFFMAN.c" "/home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles/compressor_tmp.dir/HUFFMAN.c.o"
+  "/home/grigoriy/projects/compressor/HuffmanCode.c" "/home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles/compressor_tmp.dir/HuffmanCode.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

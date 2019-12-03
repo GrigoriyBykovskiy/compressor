@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/grigoriy/CLionProjects/compressor/cmake-build-debug"/>
+				<Option working_dir="/home/grigoriy/projects/compressor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/grigoriy/CLionProjects/compressor/cmake-build-debug"/>
+				<Option working_dir="/home/grigoriy/projects/compressor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="compressor">
-				<Option output="/home/grigoriy/CLionProjects/compressor/cmake-build-debug/compressor" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/grigoriy/CLionProjects/compressor/cmake-build-debug"/>
+			<Target title="compressor_tmp">
+				<Option output="/home/grigoriy/projects/compressor/cmake-build-debug/compressor_tmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/grigoriy/projects/compressor/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -41,15 +41,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 compressor"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 compressor_tmp"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="compressor/fast">
-				<Option output="/home/grigoriy/CLionProjects/compressor/cmake-build-debug/compressor" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/grigoriy/CLionProjects/compressor/cmake-build-debug"/>
+			<Target title="compressor_tmp/fast">
+				<Option output="/home/grigoriy/projects/compressor/cmake-build-debug/compressor_tmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/grigoriy/projects/compressor/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -61,33 +61,33 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 compressor/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 compressor_tmp/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/grigoriy/CLionProjects/compressor/cmake-build-debug"/>
+				<Option working_dir="/home/grigoriy/projects/compressor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/grigoriy/CLionProjects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grigoriy/projects/compressor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/grigoriy/CLionProjects/compressor/HUFFMAN.c">
-			<Option target="compressor"/>
+		<Unit filename="/home/grigoriy/projects/compressor/HUFFMAN.c">
+			<Option target="compressor_tmp"/>
 		</Unit>
-		<Unit filename="/home/grigoriy/CLionProjects/compressor/HUFFMAN.h">
-			<Option target="compressor"/>
+		<Unit filename="/home/grigoriy/projects/compressor/HUFFMAN.h">
+			<Option target="compressor_tmp"/>
 		</Unit>
-		<Unit filename="/home/grigoriy/CLionProjects/compressor/HuffmanCode.c">
-			<Option target="compressor"/>
+		<Unit filename="/home/grigoriy/projects/compressor/HuffmanCode.c">
+			<Option target="compressor_tmp"/>
 		</Unit>
-		<Unit filename="/home/grigoriy/CLionProjects/compressor/CMakeLists.txt">
+		<Unit filename="/home/grigoriy/projects/compressor/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

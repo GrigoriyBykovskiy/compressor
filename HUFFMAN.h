@@ -23,7 +23,7 @@ typedef struct {
 
 TFile* init_tfile(void);
 void add_tfile_tsymbol(TFile* tfile, TSymbol* tsymbol);
-int is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol);
+bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol);
 void print_tfile_data(TFile* tfile);
 
 typedef struct {

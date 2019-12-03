@@ -14,20 +14,24 @@ int main()
     FILE* input_text = NULL;
     TFile* tfile = init_tfile();
 
-    if (((input_text = fopen(FILENAME, "r")) != NULL) && (tfile != NULL)) {
+    if (((input_text = fopen(FILENAME, "rb")) != NULL) && (tfile != NULL)) {
         char symbol;
-        unsigned count = 0;
+        unsigned count_of_symbols = 0;
+        unsigned count_of_unique_symbols = 0;
 
         do {
-            count++;
             symbol = fgetc(input_text);
-
-            if (!is_tfile_tsymbol_symbol_exist(tfile, symbol)) {
+            if (!is_tfile_tsymbol_symbol_exist(tfile, symbol))
+            {
                 TSymbol *tmp_tsymbol = init_tsymbol();
                 set_tsymbol_symbol(tmp_tsymbol, symbol);
                 set_tsymbol_payload(tmp_tsymbol, 1);
                 add_tfile_tsymbol(tfile, tmp_tsymbol);
+                count_of_unique_symbols++;
+
             }
+
+            count_of_symbols++;
 
         } while (symbol != EOF);
 
@@ -62,7 +66,7 @@ int main()
         //qsort(tfile->array_of_tsymbols,tfile->tsymbols_count,sizeof(TSymbol*),cmp_tsymbols);
 
         FILE* output_text = NULL;
-        if (((output_text = fopen(OUTPUTFILENAME, "w")) != NULL))
+        if (((output_text = fopen(OUTPUTFILENAME, "wb")) != NULL))
         {
             // create table of association
             for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
@@ -70,9 +74,9 @@ int main()
                 TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
                 unsigned byte = strlen(tmp->code) / 8;
                 unsigned code_len = 0;
-
+                printf("%d\n", tmp->symbol);
                 fprintf(output_text,"%c", tmp->symbol);
-                printf("%d\n",tmp->symbol);
+                //printf("%d\n",tmp->symbol);
 
                 for (int k = 0; k < byte; k ++)
                 {
@@ -91,7 +95,7 @@ int main()
                         }
                         code_len++;
                     }
-                    fprintf(output_text,"%c", buf);//replace write in file
+                    //fprintf(output_text,"%c", buf);//replace write in file
                 }
             }
             // end create table of association

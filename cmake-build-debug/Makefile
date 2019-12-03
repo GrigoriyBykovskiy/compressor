@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/grigoriy/CLionProjects/compressor
+CMAKE_SOURCE_DIR = /home/grigoriy/projects/compressor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/grigoriy/CLionProjects/compressor/cmake-build-debug
+CMAKE_BINARY_DIR = /home/grigoriy/projects/compressor/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/grigoriy/CLionProjects/compressor/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles /home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles /home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named compressor
+# Target rules for targets named compressor_tmp
 
 # Build rule for target.
-compressor: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 compressor
-.PHONY : compressor
+compressor_tmp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 compressor_tmp
+.PHONY : compressor_tmp
 
 # fast build rule for target.
-compressor/fast:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/build
-.PHONY : compressor/fast
+compressor_tmp/fast:
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/build
+.PHONY : compressor_tmp/fast
 
 HUFFMAN.o: HUFFMAN.c.o
 
@@ -129,7 +129,7 @@ HUFFMAN.o: HUFFMAN.c.o
 
 # target to build an object file
 HUFFMAN.c.o:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HUFFMAN.c.o
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HUFFMAN.c.o
 .PHONY : HUFFMAN.c.o
 
 HUFFMAN.i: HUFFMAN.c.i
@@ -138,7 +138,7 @@ HUFFMAN.i: HUFFMAN.c.i
 
 # target to preprocess a source file
 HUFFMAN.c.i:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HUFFMAN.c.i
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HUFFMAN.c.i
 .PHONY : HUFFMAN.c.i
 
 HUFFMAN.s: HUFFMAN.c.s
@@ -147,7 +147,7 @@ HUFFMAN.s: HUFFMAN.c.s
 
 # target to generate assembly for a file
 HUFFMAN.c.s:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HUFFMAN.c.s
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HUFFMAN.c.s
 .PHONY : HUFFMAN.c.s
 
 HuffmanCode.o: HuffmanCode.c.o
@@ -156,7 +156,7 @@ HuffmanCode.o: HuffmanCode.c.o
 
 # target to build an object file
 HuffmanCode.c.o:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HuffmanCode.c.o
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HuffmanCode.c.o
 .PHONY : HuffmanCode.c.o
 
 HuffmanCode.i: HuffmanCode.c.i
@@ -165,7 +165,7 @@ HuffmanCode.i: HuffmanCode.c.i
 
 # target to preprocess a source file
 HuffmanCode.c.i:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HuffmanCode.c.i
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HuffmanCode.c.i
 .PHONY : HuffmanCode.c.i
 
 HuffmanCode.s: HuffmanCode.c.s
@@ -174,7 +174,7 @@ HuffmanCode.s: HuffmanCode.c.s
 
 # target to generate assembly for a file
 HuffmanCode.c.s:
-	$(MAKE) -f CMakeFiles/compressor.dir/build.make CMakeFiles/compressor.dir/HuffmanCode.c.s
+	$(MAKE) -f CMakeFiles/compressor_tmp.dir/build.make CMakeFiles/compressor_tmp.dir/HuffmanCode.c.s
 .PHONY : HuffmanCode.c.s
 
 # Help Target
@@ -184,7 +184,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... compressor"
+	@echo "... compressor_tmp"
 	@echo "... edit_cache"
 	@echo "... HUFFMAN.o"
 	@echo "... HUFFMAN.i"
