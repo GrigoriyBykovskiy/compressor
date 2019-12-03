@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/grigoriy/clion-2019.2.5/bin/cmake/linux/bin/cmake -E remove -f
+RM = /home/grigoriy/Загрузки/CLion-2019.3/clion-2019.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/grigoriy/projects/compressor
+CMAKE_SOURCE_DIR = /home/grigoriy/CLionProjects/compressor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/grigoriy/projects/compressor/cmake-build-debug
+CMAKE_BINARY_DIR = /home/grigoriy/CLionProjects/compressor/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/compressor.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/compressor.dir/flags.make
 
 CMakeFiles/compressor.dir/HuffmanCode.c.o: CMakeFiles/compressor.dir/flags.make
 CMakeFiles/compressor.dir/HuffmanCode.c.o: ../HuffmanCode.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/compressor.dir/HuffmanCode.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/compressor.dir/HuffmanCode.c.o   -c /home/grigoriy/projects/compressor/HuffmanCode.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/compressor.dir/HuffmanCode.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/compressor.dir/HuffmanCode.c.o   -c /home/grigoriy/CLionProjects/compressor/HuffmanCode.c
 
 CMakeFiles/compressor.dir/HuffmanCode.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/compressor.dir/HuffmanCode.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/grigoriy/projects/compressor/HuffmanCode.c > CMakeFiles/compressor.dir/HuffmanCode.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/grigoriy/CLionProjects/compressor/HuffmanCode.c > CMakeFiles/compressor.dir/HuffmanCode.c.i
 
 CMakeFiles/compressor.dir/HuffmanCode.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/compressor.dir/HuffmanCode.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/grigoriy/projects/compressor/HuffmanCode.c -o CMakeFiles/compressor.dir/HuffmanCode.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/grigoriy/CLionProjects/compressor/HuffmanCode.c -o CMakeFiles/compressor.dir/HuffmanCode.c.s
 
 CMakeFiles/compressor.dir/HUFFMAN.c.o: CMakeFiles/compressor.dir/flags.make
 CMakeFiles/compressor.dir/HUFFMAN.c.o: ../HUFFMAN.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/compressor.dir/HUFFMAN.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/compressor.dir/HUFFMAN.c.o   -c /home/grigoriy/projects/compressor/HUFFMAN.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/compressor.dir/HUFFMAN.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/compressor.dir/HUFFMAN.c.o   -c /home/grigoriy/CLionProjects/compressor/HUFFMAN.c
 
 CMakeFiles/compressor.dir/HUFFMAN.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/compressor.dir/HUFFMAN.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/grigoriy/projects/compressor/HUFFMAN.c > CMakeFiles/compressor.dir/HUFFMAN.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/grigoriy/CLionProjects/compressor/HUFFMAN.c > CMakeFiles/compressor.dir/HUFFMAN.c.i
 
 CMakeFiles/compressor.dir/HUFFMAN.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/compressor.dir/HUFFMAN.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/grigoriy/projects/compressor/HUFFMAN.c -o CMakeFiles/compressor.dir/HUFFMAN.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/grigoriy/CLionProjects/compressor/HUFFMAN.c -o CMakeFiles/compressor.dir/HUFFMAN.c.s
 
 # Object files for target compressor
 compressor_OBJECTS = \
@@ -95,7 +95,7 @@ compressor: CMakeFiles/compressor.dir/HuffmanCode.c.o
 compressor: CMakeFiles/compressor.dir/HUFFMAN.c.o
 compressor: CMakeFiles/compressor.dir/build.make
 compressor: CMakeFiles/compressor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable compressor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable compressor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/compressor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/compressor.dir/clean:
 .PHONY : CMakeFiles/compressor.dir/clean
 
 CMakeFiles/compressor.dir/depend:
-	cd /home/grigoriy/projects/compressor/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/grigoriy/projects/compressor /home/grigoriy/projects/compressor /home/grigoriy/projects/compressor/cmake-build-debug /home/grigoriy/projects/compressor/cmake-build-debug /home/grigoriy/projects/compressor/cmake-build-debug/CMakeFiles/compressor.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/grigoriy/CLionProjects/compressor/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/grigoriy/CLionProjects/compressor /home/grigoriy/CLionProjects/compressor /home/grigoriy/CLionProjects/compressor/cmake-build-debug /home/grigoriy/CLionProjects/compressor/cmake-build-debug /home/grigoriy/CLionProjects/compressor/cmake-build-debug/CMakeFiles/compressor.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/compressor.dir/depend
 

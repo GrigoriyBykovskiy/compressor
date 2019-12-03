@@ -266,4 +266,33 @@ void get_codes(TBinaryTree* tbinarytree)
         strcat(tmp->code, "1");
         get_codes(tmp);
     }
-}
+};
+
+void add_tsymbol_additional_code(TFile* tfile)
+{
+    for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
+    {
+        TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
+        strcat(tmp->code, "1");
+        while (strlen(tmp->code)%8 != 0 )
+            strcat(tmp->code, "0");
+    }
+};
+
+void delete_tsymbol_additional_code(TFile* tfile)
+{
+    for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
+    {
+        TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
+        for (int i = strlen(tmp->code) - 1; i >= 0; i--)
+        {
+            if (tmp->code[i] == '0') {
+                tmp->code[i] = 0;
+            }
+            if (tmp->code[i] == '1'){
+                tmp->code[i] = 0;
+                break;
+            }
+        }
+    }
+};

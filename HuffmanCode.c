@@ -3,7 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #define FILENAME "8.tex"
-#define OUTPUTFILENAME "output.tex"
+#define OUTPUTFILENAME "output.txt"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,8 +31,6 @@ int main()
 
         } while (symbol != EOF);
 
-        print_tfile_data(tfile);
-
         TPriorityQueue *queue = init_queue();
 
         for (int i = 0; i < tfile->tsymbols_count; i++) {
@@ -41,15 +39,12 @@ int main()
             add_tpriorityqueue_tbinarytree(queue, tmp_tree);
         }
 
-        //print_tpriorityqueue_data(queue);
 
         qsort(queue->data, queue->data_count, sizeof(TBinaryTree *), cmp_tbinarytrees);
 
         TBinaryTree *tmp_tree = create_huffman_tree(queue, queue->data_count);
 
         get_codes(tmp_tree);
-
-        //print_tpriorityqueue_data(queue);
 
         //copy codes from tree to symbol
         for (int i = 0; i < queue->data_count; i++)
@@ -62,20 +57,12 @@ int main()
         }
         // end
 
-        // add additional code of symbols
-        for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
-        {
-            TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
-            strcat(tmp->code, "1");
-            while (strlen(tmp->code)%8 != 0 )
-                strcat(tmp->code, "0");
-        }
-        //end add additional code of symbols
+        add_tsymbol_additional_code(tfile);
 
-        qsort(tfile->array_of_tsymbols,tfile->tsymbols_count,sizeof(TSymbol*),cmp_tsymbols);
+        //qsort(tfile->array_of_tsymbols,tfile->tsymbols_count,sizeof(TSymbol*),cmp_tsymbols);
 
         FILE* output_text = NULL;
-        if (((output_text = fopen(OUTPUTFILENAME, "wb")) != NULL))
+        if (((output_text = fopen(OUTPUTFILENAME, "w")) != NULL))
         {
             // create table of association
             for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
@@ -84,7 +71,8 @@ int main()
                 unsigned byte = strlen(tmp->code) / 8;
                 unsigned code_len = 0;
 
-                fprintf(output_text,"%c%d", tmp->symbol, byte);
+                fprintf(output_text,"%c", tmp->symbol);
+                printf("%d\n",tmp->symbol);
 
                 for (int k = 0; k < byte; k ++)
                 {
@@ -103,30 +91,14 @@ int main()
                         }
                         code_len++;
                     }
-                    //fprintf(output_text,"%c", buf);//replace write in file
+                    fprintf(output_text,"%c", buf);//replace write in file
                 }
             }
             // end create table of association
         }
 
-
-        // delete additional code of symbols
-        for (int count_of_tsymbols = 0; count_of_tsymbols < (tfile->tsymbols_count); count_of_tsymbols++)
-        {
-            TSymbol* tmp = tfile->array_of_tsymbols[count_of_tsymbols];
-            for (int i = strlen(tmp->code) - 1; i >= 0; i--)
-            {
-                if (tmp->code[i] == '0') {
-                    tmp->code[i] = 0;
-                }
-                if (tmp->code[i] == '1'){
-                    tmp->code[i] = 0;
-                    break;
-                }
-            }
-        }
-        //end delete additional code of symbols
-
+        delete_tsymbol_additional_code(tfile);
+        /*
         // create output file
         if (((input_text = fopen(FILENAME, "r")) != NULL) && (output_text = fopen(OUTPUTFILENAME, "wb")) != NULL) {
             char symbol;
@@ -160,7 +132,7 @@ int main()
         }
 
         // end create output file
-
+        */
     }
     else
         fprintf(stderr, "Can not open input file!\n");

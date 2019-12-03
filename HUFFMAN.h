@@ -49,5 +49,7 @@ void print_tpriorityqueue_data(TPriorityQueue* tpriorityqueue);
 
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count);
 void get_codes(TBinaryTree* tbinarytree);
+void add_tsymbol_additional_code(TFile* tfile);
+void delete_tsymbol_additional_code(TFile* tfile);
 
 #endif //COMPRESSOR_TMP_HUFFMAN_H

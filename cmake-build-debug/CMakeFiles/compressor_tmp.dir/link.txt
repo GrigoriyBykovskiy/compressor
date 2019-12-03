@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/compressor_tmp.dir/HuffmanCode.c.o CMakeFiles/compressor_tmp.dir/HUFFMAN.c.o  -o compressor_tmp 
