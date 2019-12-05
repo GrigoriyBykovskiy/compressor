@@ -24,6 +24,7 @@ typedef struct {
 TFile* init_tfile(void);
 void add_tfile_tsymbol(TFile* tfile, TSymbol* tsymbol);
 bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol);
+int find_tfile_tsymbol(TFile* tfile, char symbol);
 void print_tfile_data(TFile* tfile);
 
 typedef struct {
@@ -51,5 +52,6 @@ TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
 void get_codes(TBinaryTree* tbinarytree);
 void add_tsymbol_additional_code(TFile* tfile);
 void delete_tsymbol_additional_code(TFile* tfile);
+char unsigned_to_char(unsigned* a);
 
 #endif //COMPRESSOR_TMP_HUFFMAN_H

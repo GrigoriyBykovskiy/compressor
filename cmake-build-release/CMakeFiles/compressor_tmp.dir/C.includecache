@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/grigoriy/CLionProjects/compressor/HUFFMAN.c
+HUFFMAN.h
+/home/grigoriy/CLionProjects/compressor/HUFFMAN.h
+stdio.h
+-
+stdlib.h
+-
+stdbool.h
+-
+string.h
+-
+
 /home/grigoriy/CLionProjects/compressor/HUFFMAN.h
 stdbool.h
 -

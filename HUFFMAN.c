@@ -61,8 +61,8 @@ int cmp_tsymbols(const void* a, const void* b)//fuck, it is dirty magic, i dont 
 
 void print_tsymbol_data(TSymbol* tsymbol)
 {
-    printf("\nCode of symbol is %3d;                 Payload is %3d;\n", tsymbol->symbol, tsymbol->payload);
-    printf("\n%s\n", tsymbol->code);
+    printf(stdout, "\nCode of symbol is %3d;                 Payload is %3d;\n", tsymbol->symbol, tsymbol->payload);
+    printf(stdout, "\n%s\n", tsymbol->code);
 };
 
 TFile* init_tfile(void)
@@ -97,15 +97,15 @@ void add_tfile_tsymbol(TFile* tfile, TSymbol* tsymbol)
         tfile->tsymbols_count += 1;
     }
     else
-        printf("Out of memory!\n");
+        printf(stderr, "Out of memory!\n");
 };
 
 void print_tfile_data(TFile* tfile)
 {
-    printf("\n====================TFILE_____DATA====================\n");
+    printf(stdout, "\n====================TFILE_____DATA====================\n");
     for (int i = 0; i < tfile->tsymbols_count; i++)
         print_tsymbol_data(tfile->array_of_tsymbols[i]);
-    printf("\n======================================================\n");
+    printf(stdout, "\n======================================================\n");
 };
 
 bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then increment payload
@@ -125,6 +125,21 @@ bool is_tfile_tsymbol_symbol_exist(TFile* tfile, char symbol)//if true then incr
     return 0;
 };
 
+int find_tfile_tsymbol(TFile* tfile, char symbol)
+{
+    for (int i = 0; i < (tfile->tsymbols_count); i++)
+    {
+        char tmp_symbol = get_tsymbol_symbol(tfile->array_of_tsymbols[i]);
+
+        if (tmp_symbol == symbol)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+};
+
 TBinaryTree* init_tbinarytree(void)
 {
     TBinaryTree* t = (TBinaryTree*)malloc(sizeof(TBinaryTree));
@@ -138,7 +153,7 @@ TBinaryTree* init_tbinarytree(void)
     }
     else
     {
-        printf("Out of memory!\n");
+        printf(stderr, "Out of memory!\n");
         free(t);
         t = NULL;
     }
@@ -181,10 +196,10 @@ int cmp_tbinarytrees(const void* a, const void* b)//fuck, it is dirty magic, i d
 
 void print_tbinarytree_data(TBinaryTree* tbinarytree)
 {
-    printf("\n====================TTREE____DATA====================\n");
+    printf(stdout, "\n====================TTREE____DATA====================\n");
     print_tsymbol_data(tbinarytree->root);
-    printf("\n%s\n", tbinarytree->code);
-    printf("\n======================================================\n");
+    printf(stdout, "\n%s\n", tbinarytree->code);
+    printf(stdout, "\n======================================================\n");
 };
 TPriorityQueue* init_queue(void)
 {
@@ -198,7 +213,7 @@ TPriorityQueue* init_queue(void)
     }
     else
     {
-        printf("Out of memory!\n");
+        printf(stderr, "Out of memory!\n");
         free(q);
         q = NULL;
     }
@@ -219,15 +234,15 @@ void add_tpriorityqueue_tbinarytree(TPriorityQueue* tpriorityqueue, TBinaryTree*
 
     }
     else
-        printf("Out of memory!\n");
+        printf(stderr, "Out of memory!\n");
 };
 
 void print_tpriorityqueue_data(TPriorityQueue* tpriorityqueue)
 {
-    printf("\n====================TQUEUE____DATA====================\n");
+    printf(stdout, "\n====================TQUEUE____DATA====================\n");
     for (int i = 0; i < tpriorityqueue->data_count; i++)
         print_tbinarytree_data(tpriorityqueue->data[i]);
-    printf("\n======================================================\n");
+    printf(stdout, "\n======================================================\n");
 };
 
 TBinaryTree* create_huffman_tree(TPriorityQueue* tpriorityqueue, unsigned count)
@@ -295,4 +310,17 @@ void delete_tsymbol_additional_code(TFile* tfile)
             }
         }
     }
+};
+
+char unsigned_to_char(unsigned* a)
+{
+    char tmp = 0;
+    for (int i = 0; i < 8; i++)
+    {
+        if ((*a & (1 << i)) == 0)
+            tmp &= ~(1 << i);
+        else
+            tmp |= (1 << i);
+    }
+    return tmp;
 };
